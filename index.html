@@ -12,20 +12,12 @@
     <section id="current-tasks" style="border: 2px solid black;">
         <h2>To do</h2>
         <div style="display:flex;">
-            <i class="fa-solid fa-plus" id="add-new-task"></i>
+            <i class="fa-solid fa-plus" id="add-new-task" tabindex="0"></i>
             <div style="list-style: none; display: none;" id="input-new-task">
                 <input type="text" id="task0" name="task" placeholder="Write your note here" />
             </div>
         </div>
         <ul id="to-do-list">
-            
-            <li style="list-style: none; display: flex; align-items: center;">
-                <input type="checkbox"></input>
-                <p>to add a new note</p>
-                <span>
-                    <i class="fa-solid fa-x"></i>
-                </span>
-            </li>
         </ul>
     </section>
 <hr>
@@ -47,7 +39,7 @@
             <input type="checkbox"></input>
             <p class="title">to add a new note</p>
             <span>
-                <i class="fa-solid fa-x"></i>
+                <i class="fa-solid fa-x" tabindex="0"></i>
             </span>
         </li>
     </template>
