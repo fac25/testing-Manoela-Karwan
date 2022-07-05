@@ -13,15 +13,20 @@ aTask.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     aTask.style.display = "none";
 
+    const taskContainer = document.createElement("li")
     const newTaskCheckbox = document.createElement("input");
     const newTaskTitle = document.createElement("p");
     const newTaskButton = document.createElement("button");
 
     newTaskCheckbox.type = "checkbox";
     newTaskTitle.innerHTML = aTask.value;
-    toDoList.append(newTaskCheckbox);
-    toDoList.append(newTaskTitle);
-    toDoList.append(newTaskButton);
+    newTaskButton.innerHTML = "X"
+
+
+    taskContainer.append(newTaskCheckbox);
+    taskContainer.append(newTaskTitle);
+    taskContainer.append(newTaskButton);
+    toDoList.append(taskContainer)
 
     aTask.value = "";
   }

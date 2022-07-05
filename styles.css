@@ -54,6 +54,11 @@ main {
     border: 1px solid black;
 }
 
+.current-tasks{
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+}
+
 
 .current-tasks h2 {
     text-align: center;
@@ -61,7 +66,7 @@ main {
 }
 
 
-.add-new-task{
+.add-new-task {
     margin: 10px 0;
     display: flex;
 }
@@ -81,25 +86,43 @@ main {
     margin-left: 10px;
 }
 
-#to-do-list{
+#to-do-list, #completed-tasks {
     width: 100%;
     margin: 20px 0;
 }
 
-#to-do-list li{
+#to-do-list li, #completed-tasks li {
     display: flex;
+    align-items: center;
     width: 100%;
     margin: 10px 0;
 }
 
-#to-do-list li input{
-    width: 20px;
+#to-do-list li input, #completed-tasks li input{
+    width: 18px;
+    height: 18px;
 }
 
-#to-do-list li p{
+#to-do-list li p, #completed-tasks li p {
+
+    font-size: 18px;
     padding: 0 15px;
 }
 
-#to-do-list li button{
-    display: ;
+#to-do-list li button, #completed-tasks li button {
+    padding: 0px 3px;
+}
+
+
+.completed-tasks h2{
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+#plural{
+    display: none;
+}
+
+#completed-tasks li p{
+    text-decoration: line-through;
 }
