@@ -10,7 +10,7 @@
 <body>
 
     <section id="current-tasks" style="border: 2px solid black;">
-        <h2>To do</h2>
+        <h2 tabindex="0">To do</h2>
         <div style="display:flex;">
             <i class="fa-solid fa-plus" id="add-new-task" tabindex="0"></i>
             <div style="list-style: none; display: none;" id="input-new-task">
@@ -22,7 +22,7 @@
     </section>
 <hr>
     <section id="completed-tasks" style="border: 2px solid black;">
-        <h2><span>1</span> completed task<span id="plural" style="display:none;">s</span></h2>
+        <h2 tabindex="0"><span id="finished-count">0</span> completed task<span id="plural" style="display:none;">s</span></h2>
         <ul id="completed-list">
         </ul>
     </section>
