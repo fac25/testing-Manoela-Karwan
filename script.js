@@ -18,12 +18,8 @@ addNewTask.addEventListener('keypress', (e) => {
 })
 
 
-        //=================//
-        // Create new task //
-        //=================//
-inputTask.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        // Hide input
+const createTask = (e) => {
+    // Hide input
         inputTask.style.display = "none";
         // Get a list element from the template
         const newTask = taskTemplate.content.cloneNode(true);
@@ -37,8 +33,10 @@ inputTask.addEventListener('keypress', (e) => {
 
         //Reset input
         newTaskTitle = inputTask.querySelector("#task0").value = '';
+}
 
-        // Add event listener to delete on-click
+const deleteTask = () => {
+    // Add event listener to delete on-click
         const closeBtn = toDoList.querySelector(".fa-x");
         closeBtn.addEventListener('click', (e) => {
             e.path[2].remove();
@@ -50,44 +48,61 @@ inputTask.addEventListener('keypress', (e) => {
                 e.path[2].remove();
             }
         });
+}
+
+const tickTask = (e) => {
+    const tickBox = toDoList.querySelector("input");
+        tickBox.addEventListener('click', (e) => {
+            // Create new task element in completed tasks
+            // Get a list element from the template
+            const oldTask = finishedTaskTemplate.content.cloneNode(true);
+            // Take the input's entered value
+            const newTaskTitle = e.path[1].querySelector("p").textContent;
+            // Update the new list's p tag with the input's value
+            const p = oldTask.querySelector("p[class='title']");
+            p.textContent = newTaskTitle;
+            // Add updated list to to-do list at the top of the list
+            completedList.prepend(oldTask);
+            
+            // Add event listener to delete on-click
+            const closeBtn = completedList.querySelector(".fa-x");
+            closeBtn.addEventListener('click', (e) => {
+                e.path[2].remove();
+                // Update completed counter 
+                finishedCount.innerText--;
+            });
+
+            // Add event listener to delete on-enter when focused
+            closeBtn.addEventListener('keypress', (e) => {
+                if (e.key == 'Enter') {
+                    e.path[2].remove();
+                    // Update completed counter 
+                    finishedCount.innerText--;
+                }
+            });
+            // Update completed counter 
+            finishedCount.innerText++;
+            // Delete element
+            e.path[1].remove();
+        });    
+}
+
+inputTask.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        //=================//
+        // Create new task //
+        //=================//
+        createTask();
+
+        //===================//
+        //      Delete task  //
+        //===================//
+        deleteTask();
 
         //===================//
         // Mark as completed //
         //===================//
-        const tickBox = toDoList.querySelector("input");
-        tickBox.addEventListener('click', (e) => {
-            // TODO Create new to-do task element in completed tasks
-            // Get a list element from the template
-        const oldTask = finishedTaskTemplate.content.cloneNode(true);
-            // Take the input's entered value
-        const newTaskTitle = e.path[1].querySelector("p").textContent;
-        // Update the new list's p tag with the input's value
-        const p = oldTask.querySelector("p[class='title']");
-        p.textContent = newTaskTitle;
-        // Add updated list to to-do list at the top of the list
-            completedList.prepend(oldTask);
-            
-        // Add event listener to delete on-click
-        const closeBtn = completedList.querySelector(".fa-x");
-        closeBtn.addEventListener('click', (e) => {
-            e.path[2].remove();
-        // Update completed counter 
-            finishedCount.innerText--;
-        });
-
-        // Add event listener to delete on-enter when focused
-        closeBtn.addEventListener('keypress', (e) => {
-            if (e.key == 'Enter') {
-                e.path[2].remove();
-        // Update completed counter 
-                finishedCount.innerText--;
-            }
-        });
-        // Update completed counter 
-            finishedCount.innerText++;
-        // Delete element
-            e.path[1].remove();
-        })
+        tickTask(e);
     }
 })
 
