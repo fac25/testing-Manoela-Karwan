@@ -3,18 +3,26 @@ const inputTask = document.querySelector("#input-new-task");
 const taskTemplate = document.querySelector("#task_template");
 const toDoList = document.querySelector("#to-do-list");
 
-addNewTask.addEventListener('click', () => {
-    inputTask.style.display = "block";
-})
+const aTask = document.getElementById("a-task");
 
-inputTask.addEventListener('keypress', (e) => {
-     if (e.key === 'Enter') {
-         inputTask.style.display = "none";
-         const newTaskTitle = inputTask.querySelector("#task0").value;
-         const newTask = taskTemplate.content.cloneNode(true);
-         const p = newTask.querySelector("p[class='title']");
-         p.textContent = newTaskTitle;
-         toDoList.prepend(newTask);
-         newTaskTitle = inputTask.querySelector("#task0").value = '';
-    }
-})
+addNewTask.addEventListener("click", () => {
+  aTask.style.display = "block";
+});
+
+aTask.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    aTask.style.display = "none";
+
+    const newTaskCheckbox = document.createElement("input");
+    const newTaskTitle = document.createElement("p");
+    const newTaskButton = document.createElement("button");
+
+    newTaskCheckbox.type = "checkbox";
+    newTaskTitle.innerHTML = aTask.value;
+    toDoList.append(newTaskCheckbox);
+    toDoList.append(newTaskTitle);
+    toDoList.append(newTaskButton);
+
+    aTask.value = "";
+  }
+});
