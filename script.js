@@ -24,7 +24,11 @@ const createTask = (e) => {
         // Get a list element from the template
         const newTask = taskTemplate.content.cloneNode(true);
         // Take the input's entered value
-        let newTaskTitle = inputTask.querySelector("#task0").value;
+    let newTaskTitle = inputTask.querySelector("#task0").value;
+    if (!newTaskTitle) {
+        alert("Please enter a valid title");
+        return;
+    }
         // Update the new list's p tag with the input's value
         const p = newTask.querySelector("p[class='title']");
         p.textContent = newTaskTitle;
@@ -51,8 +55,6 @@ const deleteTask = () => {
 }
 
 const tickTask = (e) => {
-    const tickBox = toDoList.querySelector("input");
-        tickBox.addEventListener('click', (e) => {
             // Create new task element in completed tasks
             // Get a list element from the template
             const oldTask = finishedTaskTemplate.content.cloneNode(true);
@@ -84,7 +86,6 @@ const tickTask = (e) => {
             finishedCount.innerText++;
             // Delete element
             e.path[1].remove();
-        });    
 }
 
 inputTask.addEventListener('keypress', (e) => {
@@ -102,7 +103,10 @@ inputTask.addEventListener('keypress', (e) => {
         //===================//
         // Mark as completed //
         //===================//
-        tickTask(e);
+        const tickBox = toDoList.querySelector("input");
+        tickBox.addEventListener('click', (e) => {
+            tickTask(e);
+        }); 
     }
 })
 
