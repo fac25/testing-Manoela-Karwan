@@ -15,13 +15,14 @@ This is a to-do list tracker. It allows users to create, complete and delete tas
 
 - [x] Use all the features of the app without a mouse
 
-## Stretch 
-### As a busy person, I want to:
+###### Stretch  
+#### As a busy person, I want to:
 
 - [x] See completed to-do filtered out from my list so that I can focus on what’s left to do
 ###### Optional
-- [ ] To do list is stored on the local storage so I can review it many times 
-- [ ] To do app lets you create different to-do lists e.g. shopping, chores, work tasks, etc.
+#### As an organised person, I want to:
+- [ ] Save my to do list and be able to view my to do list on different days
+- [ ] Create different to-do lists e.g. shopping, chores, work tasks, etc.
 ---
 ## Acceptance Criteria 
 - [x] A working to-do list
