@@ -106,7 +106,13 @@ inputTask.addEventListener('keypress', (e) => {
         const tickBox = toDoList.querySelector("input");
         tickBox.addEventListener('click', (e) => {
             tickTask(e);
+        });
+        tickBox.addEventListener('keypress', (e) => {
+            if (e.key == 'Enter') {
+                tickTask(e);
+            }
         }); 
     }
 })
+
 
