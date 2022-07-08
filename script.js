@@ -53,6 +53,47 @@ aTask.addEventListener("keypress", (e) => {
     }
   });
 
+
+  /* ---------------- Tick Task function ---------------- */
+
+const checkTask = (e) => {
+    const taskContainer = document.createElement("li");
+    taskContainer.innerHTML = e.target.parentNode.innerHTML;
+  
+    if (e.target.checked && e.target.type === "checkbox") {
+      taskContainer.firstChild.checked = true;
+      finishedTasks.append(taskContainer);
+      e.target.parentNode.remove();
+  
+      countCurrentTasks -= 1;
+      countFinishedTasks += 1;
+  
+      taskNumbers();
+    } else if (!e.target.checked && e.target.type === "checkbox") {
+      taskContainer.firstChild.checked = false;
+      currentTasks.append(taskContainer);
+      e.target.parentNode.remove();
+  
+      countCurrentTasks += 1;
+      countFinishedTasks -= 1;
+  
+      taskNumbers();
+    }
+    currentTaskNumber.innerHTML = countCurrentTasks;
+    finishedTaskNumber.innerHTML = countFinishedTasks;
+  };
+
+
+  /* ---------------- Tick tasks ---------------- */
+
+currentTasks.addEventListener("click", (e) => {
+    checkTask(e);
+  });
+  
+  finishedTasks.addEventListener("click", (e) => {
+    checkTask(e);
+  });
+
 // const addNewTask = document.querySelector("#add-new-task");
 // const inputTask = document.querySelector("#input-new-task");
 // const taskTemplate = document.querySelector("#task_template");
