@@ -23,6 +23,36 @@ addTaskBtn.addEventListener("click", () => {
   }
 });
 
+/* ---------------- Add Tasks ---------------- */
+
+aTask.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      countCurrentTasks += 1;
+  
+      const taskContainer = document.createElement("li");
+      const taskCheckbox = document.createElement("input");
+      const taskTitle = document.createElement("p");
+      const taskDeleteBtn = document.createElement("button");
+  
+      taskCheckbox.type = "checkbox";
+      taskDeleteBtn.innerHTML = "X";
+      taskDeleteBtn.type = "submit";
+      taskTitle.innerHTML = aTask.value;
+  
+      taskContainer.append(taskCheckbox);
+      taskContainer.append(taskTitle);
+      taskContainer.append(taskDeleteBtn);
+  
+      currentTasks.append(taskContainer);
+  
+      aTask.value = "";
+  
+      currentTaskNumber.innerHTML = countCurrentTasks;
+  
+      taskNumbers();
+    }
+  });
+
 // const addNewTask = document.querySelector("#add-new-task");
 // const inputTask = document.querySelector("#input-new-task");
 // const taskTemplate = document.querySelector("#task_template");
