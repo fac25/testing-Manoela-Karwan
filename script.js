@@ -53,6 +53,22 @@ aTask.addEventListener("keypress", (e) => {
     }
   });
 
+/* ---------------- Task numbers ---------------- */
+
+const taskNumbers = () => {
+    if (countCurrentTasks > 1) {
+      currentPlural.style.display = "inline";
+    } else if (countCurrentTasks < 2) {
+      currentPlural.style.display = "none";
+    }
+  
+    if (countFinishedTasks > 1) {
+      finishedPlural.style.display = "inline";
+    } else if (countFinishedTasks < 2) {
+      finishedPlural.style.display = "none";
+    }
+  };
+
 
   /* ---------------- Tick Task function ---------------- */
 
