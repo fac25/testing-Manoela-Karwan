@@ -1,74 +1,89 @@
 ///////////////////////////////////////////
-const addNoteBtn = document.getElementById("add-note-btn");
-const aNote = document.getElementById("a-note");
-const currentNotes = document.getElementById("current-notes");
-const finishedNotes = document.getElementById("finished-notes");
+const addTaskBtn = document.getElementById("add-task-btn");
+const aTask = document.getElementById("a-task");
+const currentTasks = document.getElementById("current-tasks");
+const finishedTasks = document.getElementById("finished-tasks");
 
-let countNotes = 0;
+let countTasks = 0;
 
-addNoteBtn.addEventListener("click", () => {
+addTaskBtn.addEventListener("click", () => {
   if (
-    aNote.style.display === "empty-string" ||
-    aNote.style.display === "inline-block"
+    aTask.style.display === "empty-string" ||
+    aTask.style.display === "inline-block"
   ) {
     aNote.style.display = "none";
   } else {
-    aNote.style.display = "inline-block";
+    aTask.style.display = "inline-block";
   }
 });
 
 /* ---------------- Add notes ---------------- */
 
-aNote.addEventListener("keypress", (e) => {
+aTask.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    const noteContainer = document.createElement("li");
-    const noteCheckbox = document.createElement("input");
-    const noteTitle = document.createElement("p");
-    const noteDeleteBtn = document.createElement("button");
+    const taskContainer = document.createElement("li");
+    const taskCheckbox = document.createElement("input");
+    const taskTitle = document.createElement("p");
+    const taskDeleteBtn = document.createElement("button");
 
-    noteCheckbox.type = "checkbox";
-    noteDeleteBtn.innerHTML = "X";
-    noteTitle.innerHTML = aNote.value;
+    taskCheckbox.type = "checkbox";
+    taskDeleteBtn.innerHTML = "X";
+    taskDeleteBtn.type = "submit";
+    taskTitle.innerHTML = aTask.value;
 
-    noteContainer.append(noteCheckbox);
-    noteContainer.append(noteTitle);
-    noteContainer.append(noteDeleteBtn);
+    taskContainer.append(taskCheckbox);
+    taskContainer.append(taskTitle);
+    taskContainer.append(taskDeleteBtn);
 
-    currentNotes.append(noteContainer);
+    currentTasks.append(taskContainer);
 
-    aNote.value = "";
+    aTask.value = "";
   }
 });
+
+/* ---------------- Tick Task function ---------------- */
+
+const checkTask = (e) => {
+  const taskContainer = document.createElement("li");
+  if (e.target.checked && e.target.type === "checkbox") {
+    taskContainer.innerHTML = e.target.parentNode.innerHTML;
+    taskContainer.firstChild.checked = true;
+    finishedTasks.append(taskContainer);
+    e.target.parentNode.remove();
+  } else if (!e.target.checked && e.target.type === "checkbox") {
+    taskContainer.innerHTML = e.target.parentNode.innerHTML;
+    taskContainer.firstChild.checked = false;
+    currentTasks.append(taskContainer);
+    e.target.parentNode.remove();
+  }
+};
+
+/* ---------------- Delete Task function ---------------- */
+
+const deleteTask = (e) => {
+  if (e.target.type === "submit") {
+    e.target.parentNode.remove();
+  }
+};
 
 /* ---------------- Tick notes ---------------- */
 
-currentNotes.addEventListener("click", (e) => {
-  const noteContainer = document.createElement("li");
-  if (e.target.type === "checkbox") {
-      noteContainer.innerHTML = e.target.parentNode.innerHTML;
-      noteContainer.firstChild.checked = true;
-      finishedNotes.append(noteContainer);
-      e.target.parentNode.remove();
-  }
+currentTasks.addEventListener("click", (e) => {
+  checkTask(e);
 });
 
-
-finishedNotes.addEventListener("click", (e) =>{
-  const noteContainer = document.createElement("li");
-  if (e.target.type === "checkbox") {
-      noteContainer.innerHTML = e.target.parentNode.innerHTML;
-      noteContainer.firstChild.checked = false;
-      currentNotes.append(noteContainer);
-      e.target.parentNode.remove();
-  }
-})
+finishedTasks.addEventListener("click", (e) => {
+  checkTask(e);
+});
 
 /* ---------------- Delete notes ---------------- */
 
-currentNotes.addEventListener("click", (e) => {
-  if (e.target.type === "submit") {
-    console.log(e.target.parentNode);
-  }
+currentTasks.addEventListener("click", (e) => {
+  deleteTask(e);
+});
+
+finishedTasks.addEventListener("click", (e) => {
+  deleteTask(e);
 });
 
 ///////////////////////////////////////////

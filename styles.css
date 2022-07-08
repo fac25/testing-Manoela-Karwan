@@ -35,15 +35,15 @@ main{
     border: 1px solid black;
 }
 
-.add-notes h2{
+.add-tasks h2{
     text-align: center;
 }
 
-.add-notes button{
+.add-tasks button{
     margin-left: 20px;
     padding: 1px 5px;
 }
 
-.add-notes input{
+.add-tasks input{
     display: none;
 }
