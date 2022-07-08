@@ -4,7 +4,14 @@ const aTask = document.getElementById("a-task");
 const currentTasks = document.getElementById("current-tasks");
 const finishedTasks = document.getElementById("finished-tasks");
 
-let countTasks = 0;
+const currentTaskNumber = document.getElementById("current-number");
+const finishedTaskNumber = document.getElementById("finished-number");
+
+const currentPlural = document.getElementById("current-plural");
+const finishedPlural = document.getElementById("finished-plural");
+
+let countCurrentTasks = 0;
+let countFinishedTasks = 0;
 
 addTaskBtn.addEventListener("click", () => {
   if (
@@ -17,10 +24,12 @@ addTaskBtn.addEventListener("click", () => {
   }
 });
 
-/* ---------------- Add notes ---------------- */
+/* ---------------- Add Tasks ---------------- */
 
 aTask.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
+    countCurrentTasks += 1;
+
     const taskContainer = document.createElement("li");
     const taskCheckbox = document.createElement("input");
     const taskTitle = document.createElement("p");
@@ -38,35 +47,76 @@ aTask.addEventListener("keypress", (e) => {
     currentTasks.append(taskContainer);
 
     aTask.value = "";
+
+    currentTaskNumber.innerHTML = countCurrentTasks;
+
+    taskNumbers();
   }
 });
+
+/* ---------------- Task numbers ---------------- */
+
+const taskNumbers = () => {
+  if (countCurrentTasks > 1) {
+    currentPlural.style.display = "inline";
+  } else if (countCurrentTasks < 2) {
+    currentPlural.style.display = "none";
+  }
+
+  if (countFinishedTasks > 1) {
+    finishedPlural.style.display = "inline";
+  } else if (countFinishedTasks < 2) {
+    finishedPlural.style.display = "none";
+  }
+};
 
 /* ---------------- Tick Task function ---------------- */
 
 const checkTask = (e) => {
   const taskContainer = document.createElement("li");
+  taskContainer.innerHTML = e.target.parentNode.innerHTML;
+
   if (e.target.checked && e.target.type === "checkbox") {
-    taskContainer.innerHTML = e.target.parentNode.innerHTML;
     taskContainer.firstChild.checked = true;
     finishedTasks.append(taskContainer);
     e.target.parentNode.remove();
+
+    countCurrentTasks -= 1;
+    countFinishedTasks += 1;
+
+    taskNumbers();
   } else if (!e.target.checked && e.target.type === "checkbox") {
-    taskContainer.innerHTML = e.target.parentNode.innerHTML;
     taskContainer.firstChild.checked = false;
     currentTasks.append(taskContainer);
     e.target.parentNode.remove();
+
+    countCurrentTasks += 1;
+    countFinishedTasks -= 1;
+
+    taskNumbers();
   }
+  currentTaskNumber.innerHTML = countCurrentTasks;
+  finishedTaskNumber.innerHTML = countFinishedTasks;
 };
 
 /* ---------------- Delete Task function ---------------- */
 
 const deleteTask = (e) => {
+  // console.log(e.target.parentNode.parentNode.id);
   if (e.target.type === "submit") {
+    if (e.target.parentNode.parentNode.id === "current-tasks") {
+      countCurrentTasks -= 1;
+    } else if (e.target.parentNode.parentNode.id === "finished-tasks") {
+      countFinishedTasks -= 1;
+    }
     e.target.parentNode.remove();
+    currentTaskNumber.innerHTML = countCurrentTasks;
+    finishedTaskNumber.innerHTML = countFinishedTasks;
+    taskNumbers();
   }
 };
 
-/* ---------------- Tick notes ---------------- */
+/* ---------------- Tick tasks ---------------- */
 
 currentTasks.addEventListener("click", (e) => {
   checkTask(e);
@@ -76,7 +126,7 @@ finishedTasks.addEventListener("click", (e) => {
   checkTask(e);
 });
 
-/* ---------------- Delete notes ---------------- */
+/* ---------------- Delete tasks ---------------- */
 
 currentTasks.addEventListener("click", (e) => {
   deleteTask(e);
