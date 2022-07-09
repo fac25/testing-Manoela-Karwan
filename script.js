@@ -2,6 +2,7 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const aTask = document.getElementById("a-task");
 const currentTasks = document.getElementById("current-tasks");
 const finishedTasks = document.getElementById("finished-tasks");
+const taskTemplate = document.getElementById("task_template");
 
 const currentTaskNumber = document.getElementById("current-number");
 const finishedTaskNumber = document.getElementById("finished-number");
@@ -22,7 +23,15 @@ addTaskBtn.addEventListener("click", () => {
 aTask.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         countCurrentTasks += 1;
-        const taskContainer = document
+        const taskContainer = taskTemplate.content.cloneNode(true);
+        let taskTitle = taskContainer.querySelector("p");
+        taskTitle.innerHTML = aTask.value;
+        if (!taskTitle) {
+            alert("Please enter a valid title");
+        return;
+        }
+        
+        currentTasks.prepend(taskContainer);
 
 
         // const taskContainer = document.createElement("li");
@@ -33,15 +42,13 @@ aTask.addEventListener("keypress", (e) => {
         // taskCheckbox.type = "checkbox";
         // taskDeleteBtn.innerHTML = "X";
         // taskDeleteBtn.type = "submit";
-        taskTitle.innerHTML = aTask.value; // keep
-        
-        taskContainer.classList.add("row");
+        // taskTitle.innerHTML = aTask.value;
     
-        taskContainer.append(taskCheckbox); // keep
-        taskContainer.append(taskTitle);
-        taskContainer.append(taskDeleteBtn);
+        // taskContainer.append(taskCheckbox);
+        // taskContainer.append(taskTitle);
+        // taskContainer.append(taskDeleteBtn);
     
-        currentTasks.append(taskContainer);
+        // currentTasks.append(taskContainer);
   
         aTask.value = "";
         aTask.style.display = "none";
