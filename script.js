@@ -13,43 +13,43 @@ let countCurrentTasks = 0;
 let countFinishedTasks = 0;
 
 addTaskBtn.addEventListener("click", () => {
-  if (
-    aTask.style.display === "empty-string" ||
-    aTask.style.display === "inline-block"
-  ) {
-    aNote.style.display = "none";
-  } else {
     aTask.style.display = "inline-block";
-  }
+    aTask.focus();
 });
 
 /* ---------------- Add Tasks ---------------- */
 
 aTask.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
-      countCurrentTasks += 1;
+        countCurrentTasks += 1;
+        const taskContainer = document
+
+
+        // const taskContainer = document.createElement("li");
+        // const taskCheckbox = document.createElement("input");
+        // const taskTitle = document.createElement("p");
+        // const taskDeleteBtn = document.createElement("button");
   
-      const taskContainer = document.createElement("li");
-      const taskCheckbox = document.createElement("input");
-      const taskTitle = document.createElement("p");
-      const taskDeleteBtn = document.createElement("button");
+        // taskCheckbox.type = "checkbox";
+        // taskDeleteBtn.innerHTML = "X";
+        // taskDeleteBtn.type = "submit";
+        taskTitle.innerHTML = aTask.value; // keep
+        
+        taskContainer.classList.add("row");
+    
+        taskContainer.append(taskCheckbox); // keep
+        taskContainer.append(taskTitle);
+        taskContainer.append(taskDeleteBtn);
+    
+        currentTasks.append(taskContainer);
   
-      taskCheckbox.type = "checkbox";
-      taskDeleteBtn.innerHTML = "X";
-      taskDeleteBtn.type = "submit";
-      taskTitle.innerHTML = aTask.value;
+        aTask.value = "";
+        aTask.style.display = "none";
+
+        currentTaskNumber.innerHTML = countCurrentTasks;
   
-      taskContainer.append(taskCheckbox);
-      taskContainer.append(taskTitle);
-      taskContainer.append(taskDeleteBtn);
-  
-      currentTasks.append(taskContainer);
-  
-      aTask.value = "";
-  
-      currentTaskNumber.innerHTML = countCurrentTasks;
-  
-      taskNumbers();
+        taskNumbers();
+        addTaskBtn.focus();
     }
   });
 
@@ -73,31 +73,32 @@ const taskNumbers = () => {
   /* ---------------- Tick Task function ---------------- */
 
 const checkTask = (e) => {
-    const taskContainer = document.createElement("li");
-    taskContainer.innerHTML = e.target.parentNode.innerHTML;
-  
+        const taskContainer = document.createElement("li");
+        taskContainer.classList.add("row");
+        taskContainer.innerHTML = e.target.parentNode.innerHTML;
+
     if (e.target.checked && e.target.type === "checkbox") {
-      taskContainer.firstChild.checked = true;
-      finishedTasks.append(taskContainer);
-      e.target.parentNode.remove();
-  
-      countCurrentTasks -= 1;
-      countFinishedTasks += 1;
-  
-      taskNumbers();
+        taskContainer.firstChild.checked = true;
+        finishedTasks.append(taskContainer);
+        e.target.parentNode.remove();
+
+        countCurrentTasks -= 1;
+        countFinishedTasks += 1;
+
+        taskNumbers();
     } else if (!e.target.checked && e.target.type === "checkbox") {
-      taskContainer.firstChild.checked = false;
-      currentTasks.append(taskContainer);
-      e.target.parentNode.remove();
-  
-      countCurrentTasks += 1;
-      countFinishedTasks -= 1;
-  
-      taskNumbers();
+        taskContainer.firstChild.checked = false;
+        currentTasks.append(taskContainer);
+        e.target.parentNode.remove();
+
+        countCurrentTasks += 1;
+        countFinishedTasks -= 1;
+
+        taskNumbers();
     }
     currentTaskNumber.innerHTML = countCurrentTasks;
     finishedTaskNumber.innerHTML = countFinishedTasks;
-  };
+    };
 
 
   /* ---------------- Delete Task function ---------------- */
