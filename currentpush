@@ -8,6 +8,10 @@ Fix hide input button on completion
 
 focus in input when add-new clicked
 
+use template to add newtask
+
+fix cherckbox as it broke
+
 ---
 
 not using templates anymore

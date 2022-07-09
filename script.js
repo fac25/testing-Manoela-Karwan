@@ -80,19 +80,21 @@ const taskNumbers = () => {
   /* ---------------- Tick Task function ---------------- */
 
 const checkTask = (e) => {
-        const taskContainer = document.createElement("li");
-        taskContainer.classList.add("row");
-        taskContainer.innerHTML = e.target.parentNode.innerHTML;
-
+    const taskContainer = document.createElement("li");
+    taskContainer.classList.add("row");
+    taskContainer.innerHTML = e.target.parentNode.innerHTML;
+    
     if (e.target.checked && e.target.type === "checkbox") {
-        taskContainer.firstChild.checked = true;
-        finishedTasks.append(taskContainer);
+
+        taskContainer.querySelector("input").checked = true;
+        finishedTasks.prepend(taskContainer);
         e.target.parentNode.remove();
 
         countCurrentTasks -= 1;
         countFinishedTasks += 1;
 
         taskNumbers();
+
     } else if (!e.target.checked && e.target.type === "checkbox") {
         taskContainer.firstChild.checked = false;
         currentTasks.append(taskContainer);
