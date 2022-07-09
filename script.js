@@ -112,7 +112,6 @@ const checkTask = (e) => {
   /* ---------------- Delete Task function ---------------- */
 
 const deleteTask = (e) => {
-    // console.log(e.target.parentNode.parentNode.id);
     if (e.target.type === "submit") {
       if (e.target.parentNode.parentNode.id === "current-tasks") {
         countCurrentTasks -= 1;
