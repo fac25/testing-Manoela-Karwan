@@ -2,6 +2,7 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const aTask = document.getElementById("a-task");
 const currentTasks = document.getElementById("current-tasks");
 const finishedTasks = document.getElementById("finished-tasks");
+const taskTemplate = document.getElementById("task_template");
 
 const currentTaskNumber = document.getElementById("current-number");
 const finishedTaskNumber = document.getElementById("finished-number");
@@ -13,43 +14,48 @@ let countCurrentTasks = 0;
 let countFinishedTasks = 0;
 
 addTaskBtn.addEventListener("click", () => {
-  if (
-    aTask.style.display === "empty-string" ||
-    aTask.style.display === "inline-block"
-  ) {
-    aNote.style.display = "none";
-  } else {
     aTask.style.display = "inline-block";
-  }
+    aTask.focus();
 });
 
 /* ---------------- Add Tasks ---------------- */
 
 aTask.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      countCurrentTasks += 1;
+  if (e.key === "Enter") {
+    if (!aTask.value) {
+      alert("Whoops, type your task first.");
+      return;
+    }
+    countCurrentTasks += 1;
+    const taskContainer = taskTemplate.content.cloneNode(true);
+    let taskTitle = taskContainer.querySelector("p");
+    taskTitle.innerHTML = aTask.value;
+    
+    currentTasks.prepend(taskContainer);
+
+        // const taskContainer = document.createElement("li");
+        // const taskCheckbox = document.createElement("input");
+        // const taskTitle = document.createElement("p");
+        // const taskDeleteBtn = document.createElement("button");
   
-      const taskContainer = document.createElement("li");
-      const taskCheckbox = document.createElement("input");
-      const taskTitle = document.createElement("p");
-      const taskDeleteBtn = document.createElement("button");
+        // taskCheckbox.type = "checkbox";
+        // taskDeleteBtn.innerHTML = "X";
+        // taskDeleteBtn.type = "submit";
+        // taskTitle.innerHTML = aTask.value;
+    
+        // taskContainer.append(taskCheckbox);
+        // taskContainer.append(taskTitle);
+        // taskContainer.append(taskDeleteBtn);
+    
+        // currentTasks.append(taskContainer);
   
-      taskCheckbox.type = "checkbox";
-      taskDeleteBtn.innerHTML = "X";
-      taskDeleteBtn.type = "submit";
-      taskTitle.innerHTML = aTask.value;
+        aTask.value = "";
+        aTask.style.display = "none";
+
+        currentTaskNumber.innerHTML = countCurrentTasks;
   
-      taskContainer.append(taskCheckbox);
-      taskContainer.append(taskTitle);
-      taskContainer.append(taskDeleteBtn);
-  
-      currentTasks.append(taskContainer);
-  
-      aTask.value = "";
-  
-      currentTaskNumber.innerHTML = countCurrentTasks;
-  
-      taskNumbers();
+        taskNumbers();
+        addTaskBtn.focus();
     }
   });
 
@@ -74,30 +80,33 @@ const taskNumbers = () => {
 
 const checkTask = (e) => {
     const taskContainer = document.createElement("li");
+    taskContainer.classList.add("row");
     taskContainer.innerHTML = e.target.parentNode.innerHTML;
-  
+    
     if (e.target.checked && e.target.type === "checkbox") {
-      taskContainer.firstChild.checked = true;
-      finishedTasks.append(taskContainer);
-      e.target.parentNode.remove();
-  
-      countCurrentTasks -= 1;
-      countFinishedTasks += 1;
-  
-      taskNumbers();
+
+        taskContainer.querySelector("input").checked = true;
+        finishedTasks.prepend(taskContainer);
+        e.target.parentNode.remove();
+
+        countCurrentTasks -= 1;
+        countFinishedTasks += 1;
+
+        taskNumbers();
+
     } else if (!e.target.checked && e.target.type === "checkbox") {
-      taskContainer.firstChild.checked = false;
-      currentTasks.append(taskContainer);
-      e.target.parentNode.remove();
-  
-      countCurrentTasks += 1;
-      countFinishedTasks -= 1;
-  
-      taskNumbers();
+        taskContainer.firstChild.checked = false;
+        currentTasks.append(taskContainer);
+        e.target.parentNode.remove();
+
+        countCurrentTasks += 1;
+        countFinishedTasks -= 1;
+
+        taskNumbers();
     }
     currentTaskNumber.innerHTML = countCurrentTasks;
     finishedTaskNumber.innerHTML = countFinishedTasks;
-  };
+    };
 
 
   /* ---------------- Delete Task function ---------------- */
