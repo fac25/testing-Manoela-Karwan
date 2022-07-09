@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,32 @@
     <link rel="stylesheet" href="./styles.css">
     <title>A to-do list app</title>
 </head>
+
 <body>
 
-    <section id="current-tasks" style="border: 2px solid black;">
+    <main>
+        <section class="add-tasks">
+            <h2>To do list</h2>
+            <button id="add-task-btn">+</button>
+            <input type="text" id="a-task" placeholder="Add a task...">
+        </section>
+
+        <section class="current">
+            <h2><span id="current-number">0</span> Current Task<span id="current-plural">s</span></h2>
+            <ul id="current-tasks">
+                <li>
+                </li>
+            </ul>
+        </section>
+
+        <section class="finished">
+            <h2><span id="finished-number">0</span> Completed Task<span id="finished-plural">s</span></h2>
+            <ul id="finished-tasks">
+            </ul>
+        </section>
+    </main>
+
+    <!-- <section id="current-tasks" style="border: 2px solid black;">
         <h2 tabindex="0">To do</h2>
         <div style="display:flex;">
             <i class="fa-solid fa-plus" id="add-new-task" tabindex="0"></i>
@@ -20,9 +44,10 @@
         <ul id="to-do-list">
         </ul>
     </section>
-<hr>
+    <hr>
     <section id="completed-tasks" style="border: 2px solid black;">
-        <h2 tabindex="0"><span id="finished-count">0</span> completed task<span id="plural" style="display:none;">s</span></h2>
+        <h2 tabindex="0"><span id="finished-count">0</span> completed task<span id="plural"
+                style="display:none;">s</span></h2>
         <ul id="completed-list">
         </ul>
     </section>
@@ -45,11 +70,12 @@
             </span>
         </li>
     </template>
-    
+
     </form>
 
-<script src="https://kit.fontawesome.com/2e59e30a69.js" crossorigin="anonymous"></script>
-<script src="script.js"></script>
-<script src="index.test.js"></script>
+    <script src="https://kit.fontawesome.com/2e59e30a69.js" crossorigin="anonymous"></script> -->
+    <script src="script.js"></script>
+    <script src="index.test.js"></script>
 </body>
+
 </html>
