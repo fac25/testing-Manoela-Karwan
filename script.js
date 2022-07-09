@@ -21,18 +21,17 @@ addTaskBtn.addEventListener("click", () => {
 /* ---------------- Add Tasks ---------------- */
 
 aTask.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        countCurrentTasks += 1;
-        const taskContainer = taskTemplate.content.cloneNode(true);
-        let taskTitle = taskContainer.querySelector("p");
-        taskTitle.innerHTML = aTask.value;
-        if (!taskTitle) {
-            alert("Please enter a valid title");
-        return;
-        }
-        
-        currentTasks.prepend(taskContainer);
-
+  if (e.key === "Enter") {
+    if (!aTask.value) {
+      alert("Whoops, type your task first.");
+      return;
+    }
+    countCurrentTasks += 1;
+    const taskContainer = taskTemplate.content.cloneNode(true);
+    let taskTitle = taskContainer.querySelector("p");
+    taskTitle.innerHTML = aTask.value;
+    
+    currentTasks.prepend(taskContainer);
 
         // const taskContainer = document.createElement("li");
         // const taskCheckbox = document.createElement("input");
