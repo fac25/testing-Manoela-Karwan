@@ -25,7 +25,7 @@ This is a to-do list tracker. It allows users to create, complete and delete tas
 - [ ] Create different to-do lists e.g. shopping, chores, work tasks, etc.
 ---
 ## Acceptance Criteria 
-- [ ] A working to-do list
+- [x] A working to-do list
 - [ ] Tests for (at least) each user story
 - [ ] A responsive, mobile-first design
 - [ ] Ensure your app is accessible to as many different users as possible
