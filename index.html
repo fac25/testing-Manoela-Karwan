@@ -13,22 +13,49 @@
 
     <main>
         <section class="add-tasks">
-            <h2 tabindex="0">To do list</h2>
-            <label for="a-task">Add a task</label>
+            <h2 tabindex="0">To do app</h2>
+            <label for="a-task" class="hidden">Add your new todo</label>
             <button id="add-task-btn">+</button>
-            <input type="text" id="a-task" placeholder="Add a task...">
+            <input type="text" id="a-task" placeholder="Add your new todo..." maxlength="48">
         </section>
-
+        <hr>
         <section class="current">
-            <h2 tabindex="0"><span id="current-number">0</span> Current Task<span id="current-plural">s</span></h2>
-            <ul id="current-tasks">
-                <li>
+            <h2 tabindex="0">You have <span id="current-number">0</span> pending task<span id="current-plural">s</span></h2>
+            <ul id="current-tasks" class="">
+                <li class="row task">
+                    <input type="checkbox">
+                    <p class="task-title">First note</p>
+                    <button type="submit">X</button>
+                </li>
+                <li class="row task">
+                    <input type="checkbox">
+                    <p class="task-title">Second note</p>
+                    <button type="submit">X</button>
+                </li><li class="row task">
+                    <input type="checkbox">
+                    <p class="task-title">Third note</p>
+                    <button type="submit">X</button>
+                </li>
+                <li class="row task">
+                    <input type="checkbox">
+                    <p class="task-title">Fourth note</p>
+                    <button type="submit">X</button>
+                </li>
+                <li class="row task">
+                    <input type="checkbox">
+                    <p class="task-title">Firfth note</p>
+                    <button type="submit">X</button>
+                </li>
+                <li class="row task">
+                    <input type="checkbox">
+                    <p class="task-title">Sixth note</p>
+                    <button type="submit">X</button>
                 </li>
             </ul>
         </section>
-
+        <hr>
         <section class="finished">
-            <h2 tabindex="0"><span id="finished-number">0</span> Completed Task<span id="finished-plural">s</span></h2>
+            <h2 tabindex="0">You have <span id="finished-number">0</span> completed Task<span id="finished-plural">s</span></h2>
             <ul id="finished-tasks">
             </ul>
         </section>
@@ -36,9 +63,9 @@
 
 
     <template class="hidden" id="task_template">
-        <li class="row">
+        <li class="row task">
             <input type="checkbox">
-            <p></p>
+            <p class="task-title"></p>
             <button type="submit">X</button>
         </li>
     </template>

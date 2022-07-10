@@ -53,6 +53,10 @@ main {
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
 #current-plural,
 #finished-plural {
     display: none;
@@ -60,4 +64,21 @@ main {
 
 .row {
     display: flex;
+}
+
+.grid {
+    display: grid;
+}
+
+.task {
+    width: 400px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.task-title {
+    width: 360px;
+    text-align: center;
 }
