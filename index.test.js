@@ -311,4 +311,109 @@ test("Tick button to send any task ticked off on the top of finished tasks", () 
 //  TEST finished tasks  //
 ///////////////////////////
 
+test("Untick button to send the ticked off task in current tasks", () => {
+    // Create and tick task
+    createNewTask("Test task");
+    currentTasks.querySelector("input").click();
 
+    
+    // Find first task in finished
+    const selectedTask = finishedTasks.querySelector("li");
+    const unTickBtn = selectedTask.querySelector("input");
+
+    selectedTask.querySelector("p").textContent = "This tasks will be unticked";
+    let taskTxt = finishedTasks.querySelector("p").textContent;
+    
+    // Check if it now exists in current
+    
+    const currCountBefore = countCurrentTasks;
+    const tickedCountBefore = countFinishedTasks;
+
+    unTickBtn.click();
+
+    const currCountAfter = countCurrentTasks;
+    const tickedCountAfter = countFinishedTasks;
+
+    const unTickedTxt = currentTasks.querySelector("p").textContent;
+
+    let result = false;
+    if (unTickedTxt == taskTxt) {
+        result = true;
+    }
+    equal(result, true, "to send the ticked off task in current tasks");
+    
+    result = false;
+    if (currCountAfter == (currCountBefore + 1) &&
+        tickedCountAfter == (tickedCountBefore - 1)) {
+        result = true;
+    }
+    equal(result, true, "number of tasks to be updated correctly");
+
+    // Reset tasks
+    let deleteAllTicked = currentTasks.querySelectorAll("li");
+    for (let li of deleteAllTicked) {
+        li.querySelector("button").click();
+    }
+});
+
+test("Untick button to send the any ticked off task in current tasks", () => {
+    // Create 10 tasks
+    let count = 10;
+    while (count > 0) {
+        createNewTask("Test task");
+        count--;
+    }
+    // Create 10 more tasks and tick them off
+    count = 10;
+    while (count > 0) {
+        createNewTask("Ticked task");
+        currentTasks.querySelector("input").click();
+        count--;
+    }
+
+    // Select a random task from finished
+    const toBeClickedArr = finishedTasks.querySelectorAll("li");
+    const randomIdx = Math.round(Math.random() * 9);
+    const selectedTask = toBeClickedArr[randomIdx];
+
+    const unTickBtn = selectedTask.querySelector("input");
+
+    selectedTask.querySelector("p").textContent = "This tasks will be unticked";
+    let taskTxt = finishedTasks.querySelector("p").textContent;
+    
+    // Check if it now exists in current
+    
+    const currCountBefore = countCurrentTasks;
+    const tickedCountBefore = countFinishedTasks;
+
+    unTickBtn.click();
+
+    const currCountAfter = countCurrentTasks;
+    const tickedCountAfter = countFinishedTasks;
+
+    const unTickedTxt = currentTasks.querySelectorAll("p")[10].textContent;
+    console.log(unTickedTxt);
+
+    let result = false;
+    if (unTickedTxt == taskTxt) {
+        result = true;
+    }
+    equal(result, true, "to send the ticked off task in current tasks");
+    
+    result = false;
+    if (currCountAfter == (currCountBefore + 1) &&
+        tickedCountAfter == (tickedCountBefore - 1)) {
+        result = true;
+    }
+    equal(result, true, "number of tasks to be updated correctly");
+
+    // // Reset tasks
+    let deleteAllCurr = currentTasks.querySelectorAll("li");
+    for (let li of deleteAllCurr) {
+        li.querySelector("button").click();
+    }
+    let deleteAllTicked = finishedTasks.querySelectorAll("li");
+    for (let li of deleteAllTicked) {
+        li.querySelector("button").click();
+    }
+});
