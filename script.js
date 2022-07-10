@@ -19,8 +19,7 @@ addTaskBtn.addEventListener("click", () => {
 });
 
 /* ---------------- Add Tasks ---------------- */
-
-aTask.addEventListener("keypress", (e) => {
+const inputToTask = (e) => {
   if (e.key === "Enter") {
     if (!aTask.value) {
       alert("Whoops, type your task first.");
@@ -33,15 +32,18 @@ aTask.addEventListener("keypress", (e) => {
     
     currentTasks.prepend(taskContainer);
   
-        aTask.value = "";
-        aTask.style.display = "none";
+    aTask.value = "";
+    aTask.style.display = "none";
 
-        currentTaskNumber.innerHTML = countCurrentTasks;
+    currentTaskNumber.innerHTML = countCurrentTasks;
   
-        taskNumbers();
-        addTaskBtn.focus();
-    }
-  });
+    taskNumbers();
+    addTaskBtn.focus();
+  }
+};
+
+
+aTask.addEventListener("keypress", inputToTask);
 
 /* ---------------- Task numbers ---------------- */
 
