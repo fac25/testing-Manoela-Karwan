@@ -35,7 +35,7 @@ test("deleteTask() to remove the first task of current", () => {
         elExist = false;
     }
     let result = elExist;
-    equal(result, false, "can remove the first task of current");
+    equal(result, false, "to remove the first task of current");
 });
 
 test("deleteTask() to remove any task from a list of 10 current tasks", () => {
@@ -61,9 +61,9 @@ test("deleteTask() to remove any task from a list of 10 current tasks", () => {
         elExist = false;
     }
     let result = elExist;
-    equal(result, false, "can remove any task from a list of 10 current tasks");
+    equal(result, false, "to remove any task from a list of 10 current tasks");
     result = currentTasks.querySelectorAll("li").length;
-    equal(result, 9, "number of tasks is updated correctly");
+    equal(result, 9, "number of tasks to be updated correctly");
 
     // Reset notes
     const deleteAll = currentTasks.querySelectorAll("li");
@@ -98,7 +98,7 @@ test("deleteTask() to remove the first task of current", () => {
         elExist = false;
     }
     let result = elExist;
-    equal(result, false, "can remove the first task of current");
+    equal(result, false, "to remove the first task of current");
 });
 
 test("deleteTask() to remove any task from a list of 10 current tasks", () => {
@@ -126,9 +126,9 @@ test("deleteTask() to remove any task from a list of 10 current tasks", () => {
         elExist = false;
     }
     let result = elExist;
-    equal(result, false, "can remove any task from a list of 10 current tasks");
+    equal(result, false, "to remove any task from a list of 10 current tasks");
     result = finishedTasks.querySelectorAll("li").length;
-    equal(result, 9, "number of tasks is updated correctly");
+    equal(result, 9, "number of tasks to be updated correctly");
 
     // Reset notes
     const deleteAll = finishedTasks.querySelectorAll("li");
@@ -169,14 +169,14 @@ test("checkTask() to send the first task ticked off in finished tasks", () => {
     if (tickedTxt == taskTxt) {
         result = true;
     }
-    equal(result, true, "can send the first task ticked off in finished tasks");
+    equal(result, true, "to send the first task ticked off in finished tasks");
     
     result = false;
     if (currCountAfter == (currCountBefore - 1) &&
         tickedCountAfter == (tickedCountBefore + 1)) {
         result = true;
     }
-    equal(result, true, "number of tasks is updated correctly");
+    equal(result, true, "number of tasks to be updated correctly");
 
     // Reset tasks
     let deleteAllTicked = finishedTasks.querySelectorAll("li");
@@ -220,14 +220,14 @@ test("checkTask() to send the any task ticked off in finished tasks", () => {
     if (tickedTxt == taskTxt) {
         result = true;
     }
-    equal(result, true, "can send the any task ticked off in finished tasks");
+    equal(result, true, "to send the any task ticked off in finished tasks");
     
     result = false;
     if (currCountAfter == (currCountBefore - 1) &&
         tickedCountAfter == (tickedCountBefore + 1)) {
         result = true;
     }
-    equal(result, true, "number of tasks is updated correctly");
+    equal(result, true, "number of tasks to be updated correctly");
     
     
     // Reset notes
@@ -284,14 +284,14 @@ test("checkTask() to send the any task ticked off on the top of finished tasks",
     if (tickedTxt == taskTxt) {
         result = true;
     }
-    equal(result, true, "can send the any task ticked off on the top of finished tasks");
+    equal(result, true, "to send the any task ticked off on the top of finished tasks");
     
     result = false;
     if (currCountAfter == (currCountBefore - 1) &&
         tickedCountAfter == (tickedCountBefore + 1)) {
         result = true;
     }
-    equal(result, true, "number of tasks is updated correctly");
+    equal(result, true, "number of tasks to be updated correctly");
     
     
     // Reset notes
