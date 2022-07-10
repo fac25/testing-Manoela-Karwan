@@ -406,13 +406,13 @@ test("Untick button to send the any ticked off task in current tasks", () => {
     }
     equal(result, true, "number of tasks to be updated correctly");
 
-    // // // Reset tasks
-    // let deleteAllCurr = currentTasks.querySelectorAll("li");
-    // for (let li of deleteAllCurr) {
-    //     li.querySelector("button").click();
-    // }
-    // let deleteAllTicked = finishedTasks.querySelectorAll("li");
-    // for (let li of deleteAllTicked) {
-    //     li.querySelector("button").click();
-    // }
+    // // Reset tasks
+    let deleteAllCurr = currentTasks.querySelectorAll("li");
+    for (let li of deleteAllCurr) {
+        li.querySelector("button").click();
+    }
+    let deleteAllTicked = finishedTasks.querySelectorAll("li");
+    for (let li of deleteAllTicked) {
+        li.querySelector("button").click();
+    }
 });
