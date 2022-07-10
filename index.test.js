@@ -379,7 +379,7 @@ test("Untick button to send the any ticked off task in current tasks", () => {
     const unTickBtn = selectedTask.querySelector("input");
 
     selectedTask.querySelector("p").textContent = "This tasks will be unticked";
-    let taskTxt = finishedTasks.querySelector("p").textContent;
+    let taskTxt = selectedTask.querySelector("p").textContent;
     
     // Check if it now exists in current
     
@@ -391,8 +391,7 @@ test("Untick button to send the any ticked off task in current tasks", () => {
     const currCountAfter = countCurrentTasks;
     const tickedCountAfter = countFinishedTasks;
 
-    const unTickedTxt = currentTasks.querySelectorAll("p")[10].textContent;
-    console.log(unTickedTxt);
+    const unTickedTxt = currentTasks.querySelectorAll("p")[(currentTasks.childElementCount-1)].textContent;
 
     let result = false;
     if (unTickedTxt == taskTxt) {
@@ -407,13 +406,13 @@ test("Untick button to send the any ticked off task in current tasks", () => {
     }
     equal(result, true, "number of tasks to be updated correctly");
 
-    // // Reset tasks
-    let deleteAllCurr = currentTasks.querySelectorAll("li");
-    for (let li of deleteAllCurr) {
-        li.querySelector("button").click();
-    }
-    let deleteAllTicked = finishedTasks.querySelectorAll("li");
-    for (let li of deleteAllTicked) {
-        li.querySelector("button").click();
-    }
+    // // // Reset tasks
+    // let deleteAllCurr = currentTasks.querySelectorAll("li");
+    // for (let li of deleteAllCurr) {
+    //     li.querySelector("button").click();
+    // }
+    // let deleteAllTicked = finishedTasks.querySelectorAll("li");
+    // for (let li of deleteAllTicked) {
+    //     li.querySelector("button").click();
+    // }
 });
