@@ -17,7 +17,7 @@ const createNewTask = (title) => {
 /////////////////////////
 
 
-test("deleteTask() to remove the first task of current", () => {
+test("Delete button to remove the first task of current", () => {
     // Create a task
     createNewTask("Test task");
 
@@ -38,7 +38,7 @@ test("deleteTask() to remove the first task of current", () => {
     equal(result, false, "to remove the first task of current");
 });
 
-test("deleteTask() to remove any task from a list of 10 current tasks", () => {
+test("Delete button to remove any task from a list of 10 current tasks", () => {
     // Create 10 tasks
     let count = 10;
     while (count > 0) {
@@ -78,7 +78,7 @@ test("deleteTask() to remove any task from a list of 10 current tasks", () => {
 // TEST completed tasks //
 //////////////////////////
 
-test("deleteTask() to remove the first task of current", () => {
+test("Delete button to remove the first task of current", () => {
     // Create a task and mark it as finished
     createNewTask("Test task");
     currentTasks.querySelector("input").click();
@@ -101,7 +101,7 @@ test("deleteTask() to remove the first task of current", () => {
     equal(result, false, "to remove the first task of current");
 });
 
-test("deleteTask() to remove any task from a list of 10 current tasks", () => {
+test("Delete button to remove any task from a list of 10 current tasks", () => {
     // // Create 10 tasks and mark them as finished
     let count = 10;
     while (count > 0) {
@@ -143,7 +143,7 @@ test("deleteTask() to remove any task from a list of 10 current tasks", () => {
 //  TEST current tasks   //
 ///////////////////////////
 
-test("checkTask() to send the first task ticked off in finished tasks", () => {
+test("Tick button to send the first ticked off tasl in finished tasks", () => {
     // Create a task
         createNewTask("Test task");
 
@@ -185,7 +185,7 @@ test("checkTask() to send the first task ticked off in finished tasks", () => {
     }
 });
 
-test("checkTask() to send the any task ticked off in finished tasks", () => {
+test("Tick button to send any task ticked off in finished tasks", () => {
     // Create 10 tasks
     let count = 10;
     while (count > 0) {
@@ -241,7 +241,7 @@ test("checkTask() to send the any task ticked off in finished tasks", () => {
     }
 });
 
-test("checkTask() to send the any task ticked off on the top of finished tasks", () => {
+test("Tick button to send any task ticked off on the top of finished tasks", () => {
     // Create 10 tasks
     let count = 10;
     while (count > 0) {
