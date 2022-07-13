@@ -3,12 +3,33 @@ test('Test works', () => {
     equal(a, "test works");
 })
 
+
+// Test before task created
+const beforeTaskCreated = (title) => {
+    aTask.value = title;
+}
+
+
 // Test setup
 const createNewTask = (title) => {
     addTaskBtn.click();
     aTask.value = title;
     inputToTask({ "key": "Enter" });
 }
+
+/////////////////////////
+//       Create        //
+// TEST create task    //
+/////////////////////////
+
+test("Add new task", () =>{
+    beforeTaskCreated("New task")
+
+    const expected = "New task"
+    const actual = aTask.value
+
+    equal(actual,expected, "New task has been added")
+})
 
 
 /////////////////////////
