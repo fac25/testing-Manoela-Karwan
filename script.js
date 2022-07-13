@@ -29,6 +29,10 @@ const inputToTask = (e) => {
     const taskContainer = taskTemplate.content.cloneNode(true);
     let taskTitle = taskContainer.querySelector("p");
     taskTitle.innerHTML = aTask.value;
+    const delBtn = document.querySelector("fa-trash");
+    // delBtn.addEventListener("hover", (e) => {
+    //   e.style.display = "block";
+    // });
     
     currentTasks.prepend(taskContainer);
   

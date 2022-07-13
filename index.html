@@ -5,43 +5,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2e59e30a69.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles.css">
     <title>A to-do list app</title>
 </head>
 
 <body>
-
-    <main>
-        <section class="add-tasks">
-            <h2 tabindex="0">To do list</h2>
-            <label for="a-task">Add a task</label>
-            <button id="add-task-btn">+</button>
-            <input type="text" id="a-task" placeholder="Add a task...">
+    <header>
+        <h1 tabindex="0">To do app</h1>
+    </header>
+    <main class="flex">
+        <section class="add-tasks row">
+                <label for="a-task">Add a task</label>
+                <button id="add-task-btn">+</button>
+                <input type="text" id="a-task" placeholder="Add a task..." maxlength="25">
         </section>
-
-        <section class="current">
-            <h2 tabindex="0"><span id="current-number">0</span> Current Task<span id="current-plural">s</span></h2>
-            <ul id="current-tasks">
-            </ul>
-        </section>
-
-        <section class="finished">
-            <h2 tabindex="0"><span id="finished-number">0</span> Completed Task<span id="finished-plural">s</span></h2>
-            <ul id="finished-tasks">
-            </ul>
-        </section>
+        <div class="all-tasks-container">
+            <section class="current grid">
+                <h2 tabindex="0">You have <span id="current-number">0</span> current task<span id="current-plural">s</span></h2>
+                <ul id="current-tasks" class="current grid">
+                    <li class="row task">
+                        <input type="checkbox">
+                        <p class="task-title">drink water</p>
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </li>
+                
+                
+                
+                    <li class="row task">
+                        <input type="checkbox">
+                        <p class="task-title">stop smocking</p>
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </li>
+                
+                
+                
+                    <li class="row task">
+                        <input type="checkbox">
+                        <p class="task-title">update shopping list </p>
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </li>
+                
+                
+                
+                    <li class="row">
+                        <input type="checkbox">
+                        <p class="task-title">to buy a present for baby</p>
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </li>
+                </ul>
+            </section>
+            <section class="finished grid">
+                <h2 tabindex="0">You have <span id="finished-number">0</span> completed task<span id="finished-plural">s</span></h2>
+                <ul id="finished-tasks" class="finished grid">
+                    <li class="row">
+                        <input type="checkbox">
+                        <p class="task-title">hire an animator</p>
+                   <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </li>
+                    <li class="row">
+                        <input type="checkbox">
+                        <p class="task-title">book a holiday</p>
+                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                    </li>
+                </ul>
+            </section>
+        </div>
     </main>
 
 
     <template class="hidden" id="task_template">
-        <li class="row">
+        <li class="row task">
             <input type="checkbox">
-            <p></p>
+            <p class="task-title"></p>
             <button type="submit">X</button>
         </li>
     </template>
     <script src="script.js"></script>
-    <script src="test-helper.js"></script>
     <script src="index.test.js"></script>
 </body>
 
