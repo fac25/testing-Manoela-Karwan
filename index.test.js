@@ -22,13 +22,23 @@ const createNewTask = (title) => {
 // TEST create task    //
 /////////////////////////
 
-test("Add new task", () =>{
+
+test("Before add new task", () =>{
     beforeTaskCreated("New task")
 
     const expected = "New task"
     const actual = aTask.value
 
     equal(actual,expected, "New task has been added")
+})
+
+test("After task created", () =>{
+    createNewTask("New task")
+
+    const expected = ""
+    const actual = aTask.value
+
+    equal(actual,expected, "Input value is empty!")
 })
 
 
