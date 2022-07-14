@@ -44,7 +44,7 @@ h2 {
 
 header {
     padding: 10px;
-    width: 90%;
+    width: 340px;
     margin: 36px auto 12px auto;
     background-color: white;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 main {
-    width: 90vw;
+    width: 340px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -64,13 +64,30 @@ main {
     border-radius: 3px;
 }
 
-.add-tasks {
-    padding: 5px;
-    border-radius: 2px;
+#input-form {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#input-form {
+    display: flex;
+}
+
+#newTodo {
+    width: 85%;
+    height: 40px;
+    padding: 8px;
     margin-left: auto;
     margin-right: auto;
     justify-content: flex-start;
     padding-bottom: 5px;
+    border:none; 
+    background-color: #f3f3f3;
+}
+
+#newTodo:focus {
+    border: 2px solid salmon;
+    transition: ease-in-out, width .35s ease-in-out;
 }
 
 .add-tasks h2 {
@@ -78,19 +95,17 @@ main {
     padding: 20px 0;
 }
 
-.add-tasks button {
-        width: 30px;
-        margin-left: 12px;
-        font-size: 18px;
+#submit-task {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: #ab00ff;
+    color: white;
 }
 
-.add-tasks input {
-    display: none;
-}
-
-#current-plural,
-#finished-plural {
-    display: none;
+.finished p {
+    text-decoration: line-through;
 }
 
 section label {
@@ -121,18 +136,18 @@ section label {
 
 .all-tasks-container {
     padding: 12px 5px;
-    background-color: white;
 }
 
 .all-tasks-container > section {
+    padding: 12px 0;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+    background-color: white;
 }
 
 #a-task {
     justify-self: end;
-    margin-left: 12px;
     width: 65%;
     height: 25px;
 }
@@ -140,7 +155,7 @@ section label {
 ul > li {
     height: 40px;
     background-color: #f3f3f3;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 li > input {
@@ -152,7 +167,7 @@ li > button {
     width: 36px;
     height: 36px;
     color: white;
-    background-color: lightgray;
+    background-color: #dbdbdb;
     border: none;
     border-radius: 2px;
 }
@@ -160,4 +175,13 @@ li > button {
 li > button:hover {
     color: white;
     background-color: red;
+}
+
+input[type=checkbox] {
+    cursor: pointer;
+    filter: hue-rotate(-35deg)
+}
+/* Prevent cursor being `text` between checkboxes */
+body {
+    cursor: default;
 }

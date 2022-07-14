@@ -18,58 +18,23 @@
         <h1 tabindex="0">todo app</h1>
     </header>
     <main class="flex">
-        <div class="all-tasks-container round">
-            <section class="add-tasks row">
-                    <button id="add-task-btn">+</button>
-                    <input type="text" id="a-task" placeholder="Add a task..." maxlength="25">
+        <div class="all-tasks-container">
+            <section class="add-tasks row round"> 
+                <form id="input-form">
+                    <input type="text" id="newTodo" placeholder="Add your new todo" maxlength="25" class="hidden round">
+                    <button id="submit-task" class="hidden round" type="submit"><i class="fa-solid fa-plus"></i></button>
+                </form>
             </section>
-            <section class="current grid">
+            <section class="current grid round">
                 <h2 tabindex="0">you have <span id="current-number">0</span> current task<span id="current-plural">s</span></h2>
                 <ul id="current-tasks" class="current grid">
-                    <li class="row task round">
-                        <input type="checkbox">
-                        <p class="task-title">drink water</p>
-                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </li>
-                
-                
-                
-                    <li class="row task round">
-                        <input type="checkbox">
-                        <p class="task-title">stop smocking</p>
-                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </li>
-                
-                
-                
-                    <li class="row task round">
-                        <input type="checkbox">
-                        <p class="task-title">update shopping list </p>
-                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </li>
-                
-                
-                
-                    <li class="row task round">
-                        <input type="checkbox">
-                        <p class="task-title">to buy a present for baby</p>
-                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </li>
+                    
                 </ul>
             </section>
-            <section class="finished grid">
+            <section class="finished grid round">
                 <h2 tabindex="0">you have <span id="finished-number">0</span> completed task<span id="finished-plural">s</span></h2>
                 <ul id="finished-tasks" class="finished grid">
-                    <li class="row task round">
-                        <input type="checkbox">
-                        <p class="task-title">hire an animator</p>
-                   <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </li>
-                    <li class="row task round">
-                        <input type="checkbox">
-                        <p class="task-title">book a holiday</p>
-                        <button type="submit"><i class="fa-solid fa-trash"></i></button>
-                    </li>
+                    
                 </ul>
             </section>
         </div>
