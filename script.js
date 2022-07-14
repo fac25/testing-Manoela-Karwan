@@ -1,5 +1,8 @@
 const addTaskBtn = document.getElementById("add-task-btn");
-const aTask = document.getElementById("a-task");
+const form = document.getElementById("input-form");
+const newTodo = document.getElementById("newTodo");
+const btnSubmit = document.getElementById("submit-task");
+
 const currentTasks = document.getElementById("current-tasks");
 const finishedTasks = document.getElementById("finished-tasks");
 const taskTemplate = document.getElementById("task_template");
@@ -13,11 +16,6 @@ const finishedPlural = document.getElementById("finished-plural");
 let countCurrentTasks = 0;
 let countFinishedTasks = 0;
 
-/* Make input work with form */
-
-const form = document.getElementById("input-form");
-const newTodo = document.getElementById("newTodo");
-const btnSubmit = document.getElementById("submit-task");
 
 newTodo.focus();
 
