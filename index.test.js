@@ -3,11 +3,42 @@ test('Test works', () => {
     equal(a, "test works");
 })
 
+
+// Test before task created
+const beforeTaskCreated = (title) => {
+    newTodo.value = title;
+}
+
+
 // Test setup
 const createNewTask = (title) => {
     newTodo.value = title;
     btnSubmit.click();
 }
+
+/////////////////////////
+//       Create        //
+// TEST create task    //
+/////////////////////////
+
+
+test("Before add new task", () =>{
+    beforeTaskCreated("New task")
+
+    const expected = "New task"
+    const actual = newTodo.value
+
+    equal(actual,expected, "New task has been added")
+})
+
+test("After task created", () =>{
+    createNewTask("New task")
+
+    const expected = ""
+    const actual = newTodo.value
+
+    equal(actual,expected, "Input value is empty!")
+})
 
 
 // /////////////////////////
