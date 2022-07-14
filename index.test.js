@@ -93,7 +93,7 @@ test("Delete button to remove any task from a list of 10 current tasks", () => {
     let result = elExist;
     equal(result, false, "to remove any task from a list of 10 current tasks");
     result = currentTasks.querySelectorAll("li").length;
-    equal(result, 9, "number of tasks to be updated correctly");
+    equal(result, 10, "number of tasks to be updated correctly");
 
     // Reset notes
     const deleteAll = currentTasks.querySelectorAll("li");
