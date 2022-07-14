@@ -1,5 +1,8 @@
 const addTaskBtn = document.getElementById("add-task-btn");
-const aTask = document.getElementById("a-task");
+const form = document.getElementById("input-form");
+const newTodo = document.getElementById("newTodo");
+const btnSubmit = document.getElementById("submit-task");
+
 const currentTasks = document.getElementById("current-tasks");
 const finishedTasks = document.getElementById("finished-tasks");
 const taskTemplate = document.getElementById("task_template");
@@ -13,10 +16,31 @@ const finishedPlural = document.getElementById("finished-plural");
 let countCurrentTasks = 0;
 let countFinishedTasks = 0;
 
-addTaskBtn.addEventListener("click", () => {
-    aTask.style.display = "inline-block";
-    aTask.focus();
-});
+
+newTodo.focus();
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log();
+  if (!form.elements.newTodo.value) {
+      alert("Whoops, type your task first.");
+      return;
+  }
+  
+  countCurrentTasks += 1;
+  const taskContainer = taskTemplate.content.cloneNode(true);
+  let taskTitle = taskContainer.querySelector("p");
+  taskTitle.innerHTML = form.elements.newTodo.value;
+  const delBtn = document.querySelector("fa-trash");
+  
+  currentTasks.prepend(taskContainer);
+
+  newTodo.value = "";
+
+  currentTaskNumber.innerHTML = countCurrentTasks;
+
+  taskNumbers();
+})
 
 /* ---------------- Add Tasks ---------------- */
 const inputToTask = (e) => {
@@ -29,6 +53,10 @@ const inputToTask = (e) => {
     const taskContainer = taskTemplate.content.cloneNode(true);
     let taskTitle = taskContainer.querySelector("p");
     taskTitle.innerHTML = aTask.value;
+    const delBtn = document.querySelector("fa-trash");
+    // delBtn.addEventListener("hover", (e) => {
+    //   e.style.display = "block";
+    // });
     
     currentTasks.prepend(taskContainer);
   
@@ -38,25 +66,25 @@ const inputToTask = (e) => {
     currentTaskNumber.innerHTML = countCurrentTasks;
   
     taskNumbers();
-    addTaskBtn.focus();
+    newTodo.focus();
   }
 };
 
 
-aTask.addEventListener("keypress", inputToTask);
+newTodo.addEventListener("keypress", inputToTask);
 
 /* ---------------- Task numbers ---------------- */
 
 const taskNumbers = () => {
-    if (countCurrentTasks > 1) {
+    if (countCurrentTasks > 1 || countCurrentTasks == 0) {
       currentPlural.style.display = "inline";
-    } else if (countCurrentTasks < 2) {
+    } else if (countCurrentTasks == 1) {
       currentPlural.style.display = "none";
     }
   
-    if (countFinishedTasks > 1) {
+    if (countFinishedTasks > 1 || countFinishedTasks == 0) {
       finishedPlural.style.display = "inline";
-    } else if (countFinishedTasks < 2) {
+    } else if (countFinishedTasks == 1) {
       finishedPlural.style.display = "none";
     }
   };
@@ -67,6 +95,9 @@ const taskNumbers = () => {
 const checkTask = (e) => {
     const taskContainer = document.createElement("li");
     taskContainer.classList.add("row");
+    taskContainer.classList.add("task"); 
+  taskContainer.classList.add("round");
+  
     taskContainer.innerHTML = e.target.parentNode.innerHTML;
     
     if (e.target.checked && e.target.type === "checkbox") {

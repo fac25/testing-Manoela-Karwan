@@ -6,15 +6,14 @@ test('Test works', () => {
 
 // Test before task created
 const beforeTaskCreated = (title) => {
-    aTask.value = title;
+    newTodo.value = title;
 }
 
 
 // Test setup
 const createNewTask = (title) => {
-    addTaskBtn.click();
-    aTask.value = title;
-    inputToTask({ "key": "Enter" });
+    newTodo.value = title;
+    btnSubmit.click();
 }
 
 /////////////////////////
@@ -27,7 +26,7 @@ test("Before add new task", () =>{
     beforeTaskCreated("New task")
 
     const expected = "New task"
-    const actual = aTask.value
+    const actual = newTodo.value
 
     equal(actual,expected, "New task has been added")
 })
@@ -36,16 +35,16 @@ test("After task created", () =>{
     createNewTask("New task")
 
     const expected = ""
-    const actual = aTask.value
+    const actual = newTodo.value
 
     equal(actual,expected, "Input value is empty!")
 })
 
 
-/////////////////////////
-//       DELETE        //
-// TEST current tasks  //
-/////////////////////////
+// /////////////////////////
+// //       DELETE        //
+// // TEST current tasks  //
+// /////////////////////////
 
 
 test("Delete button to remove the first task of current", () => {
@@ -104,10 +103,10 @@ test("Delete button to remove any task from a list of 10 current tasks", () => {
 });
 
 
-//////////////////////////
-//       DELETE         //
-// TEST completed tasks //
-//////////////////////////
+// //////////////////////////
+// //       DELETE         //
+// // TEST completed tasks //
+// //////////////////////////
 
 test("Delete button to remove the first task of current", () => {
     // Create a task and mark it as finished
@@ -169,10 +168,10 @@ test("Delete button to remove any task from a list of 10 current tasks", () => {
 });
 
 
-///////////////////////////
-//       Tick            //
-//  TEST current tasks   //
-///////////////////////////
+// ///////////////////////////
+// //       Tick            //
+// //  TEST current tasks   //
+// ///////////////////////////
 
 test("Tick button to send the first ticked off tasl in finished tasks", () => {
     // Create a task
@@ -337,10 +336,10 @@ test("Tick button to send any task ticked off on the top of finished tasks", () 
 });
 
 
-///////////////////////////
-//        Untick         //
-//  TEST finished tasks  //
-///////////////////////////
+// ///////////////////////////
+// //        Untick         //
+// //  TEST finished tasks  //
+// ///////////////////////////
 
 test("Untick button to send the ticked off task in current tasks", () => {
     // Create and tick task
