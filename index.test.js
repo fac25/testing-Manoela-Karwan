@@ -25,19 +25,23 @@ const createNewTask = (title) => {
 test("Before add new task", () =>{
     beforeTaskCreated("New task")
 
-    const expected = "New task"
-    const actual = newTodo.value
+    const expected = "New task";
+    const actual = newTodo.value;
 
-    equal(actual,expected, "New task has been added")
+    equal(actual, expected, "New task has been added");
+    newTodo.value = "";
 })
 
 test("After task created", () =>{
-    createNewTask("New task")
+    createNewTask("New task");
 
-    const expected = ""
-    const actual = newTodo.value
+    const expected = "";
+    const actual = newTodo.value;
 
-    equal(actual,expected, "Input value is empty!")
+    equal(actual, expected, "Input value is empty!");
+    // Reset test
+    currentTasks.querySelector("button").click();
+    newTodo.value = "";
 })
 
 
@@ -57,19 +61,16 @@ test("Delete button to remove the first task of current", () => {
     const randomId = Math.round(Math.random()*100);
     toBeClickedTask.id = randomId;
     toBeClickedBtn.click();
-    let elExist = true;
-    try {
-        const deletedTask = currentTasks.querySelector(`#${randomId}`);
+    let result = true;
+    const deletedTask = document.getElementById(randomId);
+    if (deletedTask == null) {   
+        result = false;
     }
-    catch {
-        elExist = false;
-    }
-    let result = elExist;
     equal(result, false, "to remove the first task of current");
 });
 
 test("Delete button to remove any task from a list of 10 current tasks", () => {
-    // Create 10 tasks
+    //Create 10 tasks
     let count = 10;
     while (count > 0) {
         createNewTask("Test task");
@@ -78,90 +79,23 @@ test("Delete button to remove any task from a list of 10 current tasks", () => {
 
     // Delete any task in the list
     const toBeClickedArr = currentTasks.querySelectorAll("li");
-    const toBeClickedTask = toBeClickedArr[Math.floor(Math.random()*10)]
-    const toBeClickedBtn = currentTasks.querySelector("button");
+    const toBeClickedTask = toBeClickedArr[Math.floor(Math.random() * 9)];
+    const toBeClickedBtn = toBeClickedTask.querySelector("button");
     const randomId = Math.round(Math.random()*100);
     toBeClickedTask.id = randomId;
     toBeClickedBtn.click();
-    let elExist = true;
-    try {
-        const deletedTask = currentTasks.querySelector(`#${randomId}`);
+    result = true;
+    const deletedTask = document.getElementById(randomId);
+    if (deletedTask === null) {
+        result = false;
     }
-    catch {
-        elExist = false;
-    }
-    let result = elExist;
+
     equal(result, false, "to remove any task from a list of 10 current tasks");
     result = currentTasks.querySelectorAll("li").length;
-    equal(result, 10, "number of tasks to be updated correctly");
-
-    // Reset notes
-    const deleteAll = currentTasks.querySelectorAll("li");
-    for (let li of deleteAll) {
-        li.querySelector("button").click();
-    }
-});
-
-
-// //////////////////////////
-// //       DELETE         //
-// // TEST completed tasks //
-// //////////////////////////
-
-test("Delete button to remove the first task of current", () => {
-    // Create a task and mark it as finished
-    createNewTask("Test task");
-    currentTasks.querySelector("input").click();
-
-    // Delete first task in the list
-
-    const toBeClickedTask =  finishedTasks.querySelector("li");
-    const toBeClickedBtn = toBeClickedTask.querySelector("button");
-    const randomId = Math.round(Math.random()*100);
-    toBeClickedTask.id = randomId;
-    toBeClickedBtn.click();
-    let elExist = true;
-    try {
-        const deletedTask = finishedTasks.querySelector(`#${randomId}`);
-    }
-    catch {
-        elExist = false;
-    }
-    let result = elExist;
-    equal(result, false, "to remove the first task of current");
-});
-
-test("Delete button to remove any task from a list of 10 current tasks", () => {
-    // // Create 10 tasks and mark them as finished
-    let count = 10;
-    while (count > 0) {
-    createNewTask("Test task");
-    currentTasks.querySelector("input").click();
-    count--;
-    }
-
-    // Delete any task in the list
-    const toBeClickedArr = finishedTasks.querySelectorAll("li");
-
-    const toBeClickedTask = toBeClickedArr[Math.floor(Math.random()*10)]
-    const toBeClickedBtn = toBeClickedTask.querySelector("button");
-    const randomId = Math.round(Math.random()*100);
-    toBeClickedTask.id = randomId;
-    toBeClickedBtn.click();
-    let elExist = true;
-    try {
-        const deletedTask = finishedTasks.querySelector(`#${randomId}`);
-    }
-    catch {
-        elExist = false;
-    }
-    let result = elExist;
-    equal(result, false, "to remove any task from a list of 10 current tasks");
-    result = finishedTasks.querySelectorAll("li").length;
     equal(result, 9, "number of tasks to be updated correctly");
 
     // Reset notes
-    const deleteAll = finishedTasks.querySelectorAll("li");
+    const deleteAll = currentTasks.querySelectorAll("li");
     for (let li of deleteAll) {
         li.querySelector("button").click();
     }
@@ -173,7 +107,7 @@ test("Delete button to remove any task from a list of 10 current tasks", () => {
 // //  TEST current tasks   //
 // ///////////////////////////
 
-test("Tick button to send the first ticked off tasl in finished tasks", () => {
+test("Tick button to send the first ticked off task in finished tasks", () => {
     // Create a task
         createNewTask("Test task");
 

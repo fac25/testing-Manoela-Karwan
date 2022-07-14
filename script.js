@@ -43,35 +43,7 @@ form.addEventListener("submit", (e) => {
 })
 
 /* ---------------- Add Tasks ---------------- */
-const inputToTask = (e) => {
-  if (e.key === "Enter") {
-    if (!aTask.value) {
-      alert("Whoops, type your task first.");
-      return;
-    }
-    countCurrentTasks += 1;
-    const taskContainer = taskTemplate.content.cloneNode(true);
-    let taskTitle = taskContainer.querySelector("p");
-    taskTitle.innerHTML = aTask.value;
-    const delBtn = document.querySelector("fa-trash");
-    // delBtn.addEventListener("hover", (e) => {
-    //   e.style.display = "block";
-    // });
-    
-    currentTasks.prepend(taskContainer);
-  
-    aTask.value = "";
-    aTask.style.display = "none";
 
-    currentTaskNumber.innerHTML = countCurrentTasks;
-  
-    taskNumbers();
-    newTodo.focus();
-  }
-};
-
-
-newTodo.addEventListener("keypress", inputToTask);
 
 /* ---------------- Task numbers ---------------- */
 
@@ -129,13 +101,14 @@ const checkTask = (e) => {
   /* ---------------- Delete Task function ---------------- */
 
 const deleteTask = (e) => {
-    if (e.target.type === "submit") {
+  console.log(e.target.tagName);
+    if (e.target.type === "submit" || e.target.parentNode.type==="submit") {
       if (e.target.parentNode.parentNode.id === "current-tasks") {
         countCurrentTasks -= 1;
       } else if (e.target.parentNode.parentNode.id === "finished-tasks") {
         countFinishedTasks -= 1;
       }
-      e.target.parentNode.remove();
+      e.target.closest("li").remove();
       currentTaskNumber.innerHTML = countCurrentTasks;
       finishedTaskNumber.innerHTML = countFinishedTasks;
       taskNumbers();
