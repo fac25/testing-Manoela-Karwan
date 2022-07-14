@@ -71,6 +71,9 @@ const taskNumbers = () => {
 const checkTask = (e) => {
     const taskContainer = document.createElement("li");
     taskContainer.classList.add("row");
+    taskContainer.classList.add("task"); 
+  taskContainer.classList.add("round");
+  
     taskContainer.innerHTML = e.target.parentNode.innerHTML;
     
     if (e.target.checked && e.target.type === "checkbox") {
